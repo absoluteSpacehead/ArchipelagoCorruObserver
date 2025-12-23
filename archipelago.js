@@ -776,7 +776,7 @@ for (let step = 0; step < (secavikcountpacket - secavikcount); step++) {
     // Login to the server. Replace "archipelago.gg:XXXXX" and "Phar" with the address/url and slot name for your room.
     // If no game is provided, client will connect in "TextOnly" mode, which is fine for this example.
     client
-        .login("wss://" + hostname.value + ":" + parseInt(port.value), slotname.value, "CorruObserver", connectionSettings)
+        .login("ws://" + hostname.value + ":" + parseInt(port.value), slotname.value, "CorruObserver", connectionSettings)
         .then(() => {
             console.log("Connected to the server");
             if(typeof flags['scansanity'] == "undefined"){
