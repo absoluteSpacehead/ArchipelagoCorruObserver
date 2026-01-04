@@ -8246,7 +8246,7 @@ env.entities['membrane incision'] = {
         	env.entities['rotwatcher'].actions[0].showIf = () => !(check("citystreet__rotmeet") && check("LOC!!citystreet__rotmeet"))
 		}
 
-		if (env.buddy_globalRotwatcher.reroll != "undefined"){
+		if (typeof env.buddy_globalRotwatcher.reroll != "undefined"){
         	env.buddy_globalRotwatcher.reroll = function() {
             let intendedDestination = false
 
