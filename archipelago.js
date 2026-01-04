@@ -8246,6 +8246,53 @@ env.entities['membrane incision'] = {
         	env.entities['rotwatcher'].actions[0].showIf = () => !(check("citystreet__rotmeet") && check("LOC!!citystreet__rotmeet"))
 		}
 
+		if (env.buddy_globalRotwatcher.reroll != "undefined"){
+        	env.buddy_globalRotwatcher.reroll = function() {
+            let intendedDestination = false
+
+            if(check("TEMP!!rotpref")) {
+                intendedDestination = check("TEMP!!rotpref")
+                change("TEMP!!rotpref", false)
+            } else { // prioritize unseen dialogues
+                if(!check("++rotorbit")) intendedDestination = "/local/orbit/"
+                else if(!check("++rotuncosm")) intendedDestination = "/local/uncosm/"
+                else if(!check("++rotozo")) intendedDestination = "/local/ozo/"
+                else if(!check("++rotmaze")) intendedDestination = "/local/ocean/ship/interview/"
+                else if(!check("++rotparasite")) intendedDestination = "/local/beneath/parasite/"
+                else if(!check("++rotpit")){if(check("visited_localuncosmpit")) {intendedDestination = "/local/uncosm/pit/"}}
+                else change("rot_e4a1", true)
+            }
+
+            let reroll = env.buddy_globalRotwatcher.setNewLocation(intendedDestination)
+            
+            chatter({actor: "sys", text: "ATTENTION::'thoughtform activity detected';'resources removed'", readout: true})                
+            chatter({actor: "sys", text: `ATTENTION::'thoughtform activity detected'::IN::'${
+                reroll.replaceAll("/", "").replace("local", "")
+                    .replace("oceanshipinterview", "funny little room")
+                    .replace("uncosmpit", "?-?l?-?a??-bs?")
+                    .replace("beneathparasite", "p?a-??r?-???s?-t?e?")
+            }'`, readout: true, delay: 3000})
+
+            vfx({type: "darkflash", state: true})
+            cutscene(true)
+
+            setTimeout(() => {
+                //on stages, we refresh stage
+                if(env.stage.name) {
+                    refreshStage({noFlash: true})
+                    env.buddy_globalRotwatcher.remove()
+                } else { // otherwise, it's a flash and remove
+                    env.buddy_globalRotwatcher.remove()
+                }
+            }, 2000)
+
+            setTimeout(() => {
+                vfx({type: "darkflash", state: false})
+                cutscene(false)
+            }, 4000);
+        }
+		}
+
     } catch(e) {console.error(e); printError(e, true)}
 
 env.dialogues['menu_hub'].start.responses[0].replies[0].showIf = ()=> check("hello_sentry_idiot");
