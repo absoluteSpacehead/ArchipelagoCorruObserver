@@ -567,6 +567,7 @@ def getscansanityrules(world: "CorruObserverWorld"):
         "Examined: ..__CITY_SURFACE__..: electric face box": lambda state: (state.has("Progressive EP0 Epilogue", world.player) and state.has("Menu: EP1 Shown Materials", world.player)),
         "Examined: ..__CITY_SURFACE__..: beautiful parasite": lambda state: (logic.canAccessCityStreetIsabel(state, world.player)),
         "Examined: ..__THEIR_VESSEL__..: clemens romanus": lambda state: (state.has("Progressive EP0 Epilogue", world.player) and state.has("Menu: EP1 Shown Materials", world.player)),
+        "Examined: ..__THEIR_WATERS__..: gate::the depths": lambda state: state.has("First Chat: Be Honest", world.player),
         "Examined: ..__OUR_DULL_VESSEL__..: parasite plane": lambda state: state.has("Menu: EP1 Fed", world.player),
         "Examined: ..__OUR_DULL_VESSEL__..: climbing wall": lambda state: state.has("Menu: EP1 Fed", world.player),
         "Examined: ..__OUR_DULL_VESSEL__..: dull heart": lambda state: state.has("Menu: EP1 Fed", world.player),
