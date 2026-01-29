@@ -2,25 +2,25 @@ from BaseClasses import CollectionState
 
 
 def canAccessIncoherentInterview(state: CollectionState, player: int) -> bool:
-    return ((state.can_reach_entrance("Clemens First Chat Warp", player)) or ((state.has("Jokzi Ozo: Hunger Mask", player)) and state.can_reach_entrance("Their Vessel -> First Chat", player)) or (state.can_reach_entrance("Vessel Surface -> First Chat", player))) and state.has("First Chat: Be Honest", player)
+    return (((state.can_reach_entrance("Clemens First Chat Warp", player)) or ((state.has("Jokzi Ozo: Hunger Mask", player)) and state.can_reach_entrance("Their Vessel -> First Chat", player)) or (state.can_reach_entrance("Vessel Surface -> First Chat", player))) and state.has("First Chat: Be Honest", player)) and and state.can_reach_region("First Chat", player)
 
 def canAccessIncoherentDullVessel(state: CollectionState, player: int) -> bool:
-    return ((state.has("Menu: EP1 Fed", player)) and state.has("Jokzi Ozo: Hunger Mask", player)) or (state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to Dull Vessel)", player)) or state.can_reach_region("Beneath", player)
+    return (((state.has("Menu: EP1 Fed", player)) and state.has("Jokzi Ozo: Hunger Mask", player)) or (state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to Dull Vessel)", player)) or state.can_reach_region("Beneath", player)) and state.can_reach_region("Dull Vessel", player)
 
 def canAccessCityStreetOffice(state: CollectionState, player: int) -> bool:
-    return (state.has("Jokzi Ozo: Joy Mask", player) or state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to City Streets)", player))
+    return ((state.has("Jokzi Ozo: Joy Mask", player) or state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to City Streets)", player))) and state.can_reach_region("City Streets", player)
 
 def canAccessCityStreetIsabel(state: CollectionState, player: int) -> bool:
-    return ((state.can_reach_entrance("Beneath -> City Streets", player)) or (state.has("Menu: EP2 Intro", player)) or (state.can_reach_entrance("Car -> City Streets", player)) or ((state.can_reach_entrance("Aquarium -> City Streets", player))))
+    return (((state.can_reach_entrance("Beneath -> City Streets", player)) or (state.has("Menu: EP2 Intro", player)) or (state.can_reach_entrance("Car -> City Streets", player)) or ((state.can_reach_entrance("Aquarium -> City Streets", player))))) and state.can_reach_region("City Streets", player)
 
 def canAccessCityStreetDocksFlip(state: CollectionState, player: int) -> bool:
-    return (state.can_reach_entrance("Beneath -> City Streets", player)) or (canAccessCityStreetIsabel(state, player) and state.has("Jokzi Ozo: Hunger Mask", player))
+    return ((state.can_reach_entrance("Beneath -> City Streets", player)) or (canAccessCityStreetIsabel(state, player) and state.has("Jokzi Ozo: Hunger Mask", player))) and and state.can_reach_region("City Streets", player)
 
 def canAccessOzoDarkRoom(state: CollectionState, player: int) -> bool:
-    return state.has("City Streets: Isabel Unitied", player) or (state.can_reach_entrance("Car -> Jokzi Ozo", player))
+    return (state.has("City Streets: Isabel Unitied", player) or (state.can_reach_entrance("Car -> Jokzi Ozo", player))) and state.can_reach_region("Jokzi Ozo", player)
 
 def canAccessOzoWakizetRoom(state: CollectionState, player: int) -> bool:
-    return state.has("Jokzi Ozo: Joy Mask", player) or state.has("Labs: Wakizet Unity", player) or (state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to Jokzi Ozo)", player))
+    return (state.has("Jokzi Ozo: Joy Mask", player) or state.has("Labs: Wakizet Unity", player) or (state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to Jokzi Ozo)", player))) and state.can_reach_region("Jokzi Ozo", player)
 
 def canAccessEntireLabs(state: CollectionState, player: int) -> bool:
-    return state.has("Jokzi Ozo: Freedom Mask", player) and state.has("Labs: Wakizet Unity", player) and state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to Labs)", player)
+    return (state.has("Jokzi Ozo: Freedom Mask", player) and state.has("Labs: Wakizet Unity", player) and state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to Labs)", player)) and state.can_reach_region("Labs", player)
